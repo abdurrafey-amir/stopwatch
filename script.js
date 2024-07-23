@@ -23,12 +23,25 @@ function milliseconds() {
 
 function seconds() {
     secnum++
-    sec.innerHTML = secnum
+    if (secnum < 10) {
+        sec.innerHTML = '0' + secnum
+    } else {
+        sec.innerHTML = secnum
+    }
+
+    if (secnum === 59) {
+        secnum = 0
+        minutes()
+    }
 }
 
 function minutes() {
     minnum++
-    min.innerHTML = minnum
+    if (minnum < 10) {
+        min.innerHTML = '0' + minnum
+    } else {
+        min.innerHTML = minnum
+    }
 }
 
 function start() {
@@ -36,4 +49,18 @@ function start() {
     INTERVAL = setInterval(() => {
         milliseconds()
     }, 10)
+}
+
+function stop() {
+    clearInterval(INTERVAL)
+}
+
+function reset() {
+    clearInterval(INTERVAL)
+    millinum = 0
+    secnum = 0
+    minnum = 0
+    millisec.innerHTML = '00'
+    sec.innerHTML = '00'
+    min.innerHTML = '00'
 }
